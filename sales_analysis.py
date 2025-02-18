@@ -28,8 +28,11 @@ class SalesAnalyzer:
         plt.figure(figsize=(12, 6))
         monthly_sales = self.analyze_monthly_trends()
         
+        # Convert Period index to datetime for plotting
+        monthly_sales.index = monthly_sales.index.astype(str)
+        
         sns.set_style("whitegrid")
-        sns.lineplot(data=monthly_sales)
+        plt.plot(monthly_sales.index, monthly_sales.values)
         plt.title('Monthly Sales Trends')
         plt.xlabel('Month')
         plt.ylabel('Revenue')
